@@ -1,38 +1,299 @@
-.App {
-  text-align: center;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body{
+  --txt-clr: rgba(3, 132, 155, 0.979);
+  --bg-hv: rgba(34, 149, 194, 0.425);
+  --border: #ccc;
+  --avtar-clr: rgb(102, 99, 99);
+  --tweet-btn: rgb(11, 128, 196);
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.app{
+  position: relative;
+  width: 1300px;
+  height: 100vh;
+  display: flex;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  /* margin-right: auto; */
+  padding: 15px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.sideBar{
+  position: relative;
+  display: flex;
+  min-width: 260px;
+  flex-direction: column;
+  padding-left: 10px;
+  /* background-color: red; */
+  padding-right: 10px;
+  border-right: 1px solid var(--border);
+}
+.sideBarOptions{
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  cursor: pointer;
+  margin: 4px 0px;
+  flex: 0.3;
+}
+.sideBarOptions:hover{
+  background-color: var(--bg-hv);
+  border-radius: 30px;
+  color: var(--txt-clr);
+}
+.sideBarOptions > span{
+  font-size: 18px;
+  font-weight: 800;
+  margin-right: 16px;
+}
+.sideBarOptions > h2{
+  font-weight: 600;
+}
+.sidebarOptions--active{
+  color: var(--txt-clr);
+}
+.sidebar__twitter{
+  position: relative;
+  margin: 20px 16px;
+  cursor: pointer;
+  color: var(--txt-clr);
+  font-weight: 900;
+  font-size: 26px;
+}
+.sideBar__tweet{
+  position: relative;
+  margin: 22px 18px;
+  width: 150px;
+  height: 33px;
+  padding: 8px 20px;
+  border-radius: 14px;
+  border: none;
+  outline: none;
+  background-color: var(--txt-clr);
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  cursor: pointer;
+}
+.feed{
+  position: relative;
+  width: 100%;
+  flex: 0.6;
+  border-right: 1px solid var(--border);
+  padding: 0px 6px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.feed::-webkit-scrollbar{
+  display: none;
+}
+.feed__header{
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px;
+  border-bottom: 1px solid var(--border);
+  z-index: 100;
+  background-color: white;
+}
+.feed__header > span{
+  font-size: 21px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.feed__header > .fa-star{
+  font-size: 18px;
+  padding: 10px;
+}
+.feed__header > .fa-star:hover{
+  background-color: var(--bg-hv);
+  color: var(--txt-clr);
+  border-radius: 50%;
+}
+.tweetBox{
+  position: relative;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  border-bottom: 2px solid var(--border);
+  padding: 16px 14px;
+}
+.tweetBox > form{
+  position: relative;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+.tweetBox__input{
+  width: 100%;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 20px;
 }
-
-.App-link {
-  color: #61dafb;
+.tweetBox__input-avtar{
+  position: relative;
+  width: 45px;
+  height: 45px;
+  background-color: gray;
+  border-radius: 50%;
+  margin-left: 10px;
+  margin-right: 10px;
+  overflow: hidden;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.tweetBox__input-avtar::after{
+  position: absolute;
+  content: '';
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  background-color: var(--avtar-clr);
+  border-radius: 50%;
+}
+.tweetBox__input-avtar::before{
+  position: absolute;
+  content: '';
+  width: 30px;
+  height: 30px;
+  top: 60%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 20px 20px 10px 10px;
+  background-color: var(--avtar-clr);
+}
+.tweetBox__input > input{
+  padding: 12px;
+  margin-left: 12px;
+  flex: 1;
+  font-size: 19px;
+  border: none;
+  outline: none;
+  color: rgb(41, 40, 40);
+}
+.tweetBox__footer{
+  position: relative;
+  width: 100%;
+  padding: 18px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tweetBox__btn{
+  position: relative;
+  width: 120px;
+  height: 30px;
+  background-color: var(--tweet-btn);
+  border-radius: 16px;
+  color: #fff;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  font-weight: 700;
+}
+.post{
+  position: relative;
+  width: 100%;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 10px;
+}
+.post__header{
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+}
+.tweetBox__input-avtar{
+  /* margin-left: -20px; */
+  margin-top: 10px;
+}
+.tweetBox__input-avtar > img{
+  position: relative;
+  width: 45px;
+  height: 45px;
+}
+.post__header-info > span:nth-child(1){
+  font-size: 16px;
+  font-weight: 700;
+  margin-right: 5px;
+}
+.post__header-info > i{
+  color: var(--tweet-btn);
+  margin-right: 6px;
+}
+.post__txt{
+  position: relative;
+  width: 100%;
+  padding: 10px 15px;
+  margin-bottom: 7px;
+}
+.post__txt > p{
+  font-weight: 400;
+  font-size: 17px;
+}
+.post__img{
+  position: relative;
+  width: 100%;
+}
+.post__img > img{
+  width: 100%;
+  border-radius: 20px;
+}
+.explore{
+  position: relative;
+  flex: 0.3;
+  padding: 12px 16px;
+  overflow-y: scroll;
+}
+.explore::-webkit-scrollbar{
+  display: none;
+}
+.explore__serach{
+  position: sticky;
+  top: 0;
+  background-color: #f1f1f1;
+  display: flex;
+  border-radius: 20px;
+  padding: 12px 15px;
+  align-items: center;
+}
+.explore__serach > input{
+  flex: 1;
+  margin-left: 3px;
+  padding:7px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: black;
+  font-weight: 600;
+  font-size: 14px;
+}
+.post__footer{
+  position: relative;
+  width: 100%;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 13px;
+}
+.post__footer > i{
+  font-size: 18px;
+  font-weight: 400;
+  cursor: pointer;
+  
 }
